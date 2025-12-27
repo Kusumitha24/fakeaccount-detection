@@ -17,7 +17,7 @@ st.markdown("Predict whether a social media account is **Fake or Real**")
 st.divider()
 
 # =====================
-# USER INPUTS
+# USER INPUTS (FORCED INTEGERS)
 # =====================
 
 profile_pic = st.selectbox("Profile Picture Present", [0, 1])
@@ -26,20 +26,23 @@ username_ratio = st.number_input(
     "Numbers / Length of Username",
     min_value=0,
     max_value=100,
-    step=1
+    step=1,
+    format="%d"
 )
 
 fullname_words = st.number_input(
-    "Fullname Words",
+    "Fullname Word Count",
     min_value=0,
-    step=1
+    step=1,
+    format="%d"
 )
 
 fullname_ratio = st.number_input(
     "Numbers / Length of Fullname",
     min_value=0,
     max_value=100,
-    step=1
+    step=1,
+    format="%d"
 )
 
 name_match = st.selectbox("Name equals Username", [0, 1])
@@ -47,7 +50,8 @@ name_match = st.selectbox("Name equals Username", [0, 1])
 desc_length = st.number_input(
     "Description Length",
     min_value=0,
-    step=1
+    step=1,
+    format="%d"
 )
 
 external_url = st.selectbox("External URL Present", [0, 1])
@@ -56,37 +60,40 @@ private = st.selectbox("Private Account", [0, 1])
 posts = st.number_input(
     "Number of Posts",
     min_value=0,
-    step=1
+    step=1,
+    format="%d"
 )
 
 followers = st.number_input(
     "Followers",
     min_value=0,
-    step=1
+    step=1,
+    format="%d"
 )
 
 follows = st.number_input(
     "Follows",
     min_value=0,
-    step=1
+    step=1,
+    format="%d"
 )
 
 # =====================
-# CREATE INPUT DATAFRAME
+# CREATE INPUT DATAFRAME (CAST TO INT)
 # =====================
 
 input_df = pd.DataFrame([[
-    profile_pic,
-    username_ratio,
-    fullname_words,
-    fullname_ratio,
-    name_match,
-    desc_length,
-    external_url,
-    private,
-    posts,
-    followers,
-    follows
+    int(profile_pic),
+    int(username_ratio),
+    int(fullname_words),
+    int(fullname_ratio),
+    int(name_match),
+    int(desc_length),
+    int(external_url),
+    int(private),
+    int(posts),
+    int(followers),
+    int(follows)
 ]], columns=[
     'profile pic',
     'nums/length username',
@@ -115,4 +122,3 @@ if st.button("🔍 Predict"):
         st.error("🚨 FAKE ACCOUNT DETECTED")
     else:
         st.success("✅ REAL ACCOUNT")
-
