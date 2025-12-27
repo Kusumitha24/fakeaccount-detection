@@ -17,83 +17,81 @@ st.markdown("Predict whether a social media account is **Fake or Real**")
 st.divider()
 
 # =====================
-# USER INPUTS (FORCED INTEGERS)
+# USER INPUTS (ALL INTEGERS)
 # =====================
 
 profile_pic = st.selectbox("Profile Picture Present", [0, 1])
 
-username_ratio = st.number_input(
+username_ratio = st.slider(
     "Numbers / Length of Username",
     min_value=0,
     max_value=100,
-    step=1,
-    format="%d"
+    value=0
 )
 
-fullname_words = st.number_input(
+fullname_words = st.slider(
     "Fullname Word Count",
     min_value=0,
-    step=1,
-    format="%d"
+    max_value=10,
+    value=0
 )
 
-fullname_ratio = st.number_input(
+fullname_ratio = st.slider(
     "Numbers / Length of Fullname",
     min_value=0,
     max_value=100,
-    step=1,
-    format="%d"
+    value=0
 )
 
 name_match = st.selectbox("Name equals Username", [0, 1])
 
-desc_length = st.number_input(
+desc_length = st.slider(
     "Description Length",
     min_value=0,
-    step=1,
-    format="%d"
+    max_value=500,
+    value=0
 )
 
 external_url = st.selectbox("External URL Present", [0, 1])
 private = st.selectbox("Private Account", [0, 1])
 
-posts = st.number_input(
+posts = st.slider(
     "Number of Posts",
     min_value=0,
-    step=1,
-    format="%d"
+    max_value=10000,
+    value=0
 )
 
-followers = st.number_input(
+followers = st.slider(
     "Followers",
     min_value=0,
-    step=1,
-    format="%d"
+    max_value=1000000,
+    value=0
 )
 
-follows = st.number_input(
+follows = st.slider(
     "Follows",
     min_value=0,
-    step=1,
-    format="%d"
+    max_value=1000000,
+    value=0
 )
 
 # =====================
-# CREATE INPUT DATAFRAME (CAST TO INT)
+# CREATE INPUT DATAFRAME
 # =====================
 
 input_df = pd.DataFrame([[
-    int(profile_pic),
-    int(username_ratio),
-    int(fullname_words),
-    int(fullname_ratio),
-    int(name_match),
-    int(desc_length),
-    int(external_url),
-    int(private),
-    int(posts),
-    int(followers),
-    int(follows)
+    profile_pic,
+    username_ratio,
+    fullname_words,
+    fullname_ratio,
+    name_match,
+    desc_length,
+    external_url,
+    private,
+    posts,
+    followers,
+    follows
 ]], columns=[
     'profile pic',
     'nums/length username',
